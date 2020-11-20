@@ -5,6 +5,7 @@ import * as CONST from "./../constants";
 // SCSS module import
 import style from "./app.scss";
 
+// ホームの表示領域
 const Home: React.FC<{}> = () => {
 
   // URL 直叩きからのリダイレクトか判定
@@ -22,6 +23,23 @@ const Home: React.FC<{}> = () => {
   return(<p>ほーむ</p>);
 };
 
+// ルーティングするページの情報
+const routingList = [
+  {title: "About",     url: CONST.LOCATION_URL_ABOUT,      render: <p>わはー</p>},
+  {title: "Garalley",  url: CONST.LOCATION_URL_GARALLEY,   render: <p>おほー</p>},
+  {title: "Contact",   url: CONST.LOCATION_URL_CONTACT,    render: <p>あはー</p>},
+];
+
+// ナビゲーション
+const nav = routingList.map(routing => {
+  return (<Link to={routing.url}>{routing.title}</Link>);
+});
+
+// ルーティングで切り替わる表示領域
+const routes = routingList.map(routing => {
+  return (<Route path={routing.url}>{routing.render}</Route>)
+});
+
 // 全体の画面
 export const App: React.FC<{}> = () => {
 
@@ -35,20 +53,14 @@ export const App: React.FC<{}> = () => {
         </Link>
 
         {/* ナビゲーション */}
-        <nav>
-          <Link to={CONST.LOCATION_URL_ABOUT}>あばうと</Link>
-          <Link to={CONST.LOCATION_URL_GARALLEY}>あーと</Link>
-          <Link to={CONST.LOCATION_URL_CONTACT}>れんらく</Link>
-        </nav>
+        <nav>{nav}</nav>
       </header>
 
       <main>
         <div className={style.contents}>
           <Switch>
             <Route exact path={CONST.LOCATION_URL_HOME}><Home /></Route>
-            <Route path={CONST.LOCATION_URL_ABOUT}><p>わはー</p></Route>
-            <Route path={CONST.LOCATION_URL_GARALLEY}><p>おほー</p></Route>
-            <Route path={CONST.LOCATION_URL_CONTACT}><p>あはー</p></Route>
+            {routes}
           </Switch>
         </div>
       </main>
