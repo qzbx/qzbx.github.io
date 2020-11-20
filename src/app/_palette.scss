@@ -1,11 +1,53 @@
-// 色定義
-$dark: #222222;
-$white: #ffffff;
+// ########################################
+//
+// 色定義（名前とコードの対応）
+//
+// ########################################
+
+// 無彩色
+$black:         #000000; // = black
+$darker:        #202020;
+$dark:          #2a2a2a;
+$gray:          #808080; // = gray
+$white:         #ffffff; // = white
+
+// 紫系
+$purple:        #af69ec;
+
+
+// ########################################
+//
+// 色配置（どの色要素にどの色を置くか）
+//
+// ########################################
+
+$title: $white; // タイトル文字色
+$subtitle: $white; // ヘッダーとかフッターとかの文字色
+$cover: $darker; // ヘッダーとかフッターとかの背景
+$maincolor: $white; // メインの文字色
+$subcolor: $white; // サブの文字色
+$background: $dark; // 全体の背景
+$accent: $purple;
+$highlight: $purple;
+
+
+// ########################################
+//
+// 色要素配置（どこがどの色要素か）
+//
+// ########################################
 
 // ヘッダー関連
-$header_bg: $dark; // ヘッダーの背景色
-$header_fg: $white; // ヘッダーの文字色
+$title_fg: $title; // タイトル文字色
+$header_bg: $cover; // ヘッダーの背景色
+$header_fg: $subtitle; // ヘッダーの文字色
+$header_ac: $accent; // アクセントカラー（現在のナビボタン等）
 
 // フッター関連
-$footer_bg: $dark; // フッターの背景色
-$footer_fg: $white; // フッターの文字色
+$footer_bg: $cover; // フッターの背景色
+$footer_fg: $subtitle; // フッターの文字色
+
+// コンテンツ
+$main_bg: $background; // 全体の背景
+$main_fg: $maincolor; // 全体の文字色
+

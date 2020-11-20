@@ -24,7 +24,7 @@ header { // ヘッダー
     height: inherit;
     padding-top: 1.5rem;
     h1 {
-      color: palette.$header_fg;
+      color: palette.$title_fg;
       font-size: 1.5rem;
       font-weight: 600;
       margin: 0;
@@ -45,13 +45,15 @@ header { // ヘッダー
       text-decoration: none;
     }
     .on { // 現在表示中
-      border-bottom: ridge plum 5px;
+      border-bottom: ridge palette.$header_ac 5px;
     }
   }
 }
 
 main { // コンテンツ
   padding: 1rem 2rem;
+  background: palette.$main_bg;
+  color: palette.$main_fg;
 
   .contents {
   }
