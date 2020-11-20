@@ -1,10 +1,11 @@
 import * as React from "react";
-import { BrowserRouter, Switch, Route, Link, useHistory } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Link, useLocation } from "react-router-dom";
 import * as CONST from "./../constants";
 import { Home } from "./home";
 
 // SCSS module import
 import style from "./app.scss";
+
 
 // ルーティングするページの情報
 const routingList = [
@@ -14,17 +15,28 @@ const routingList = [
 ];
 
 // ナビゲーション
-const nav = routingList.map(routing => {
-  return (<Link to={routing.url}>{routing.title}</Link>);
-});
+const Navigation: React.FC<{}> = () => {
+  const location = useLocation(); // 現在のロケーションを取得
 
-// ルーティングで切り替わる表示領域
-const routes = routingList.map(routing => {
-  return (<Route path={routing.url}>{routing.render}</Route>)
-});
+  const nav = routingList.map(r => {
+    // 現在表示中の場合とその他で分岐
+    if (r.url === location.pathname) { // 表示中のページに対応するナビボタン
+      return (<Link key={r.title} className={style.on} to={r.url}>{r.title}</Link>);
+    } else {
+      return (<Link key={r.title} to={r.url}>{r.title}</Link>);
+    }
+  });
+
+  return (<nav>{nav}</nav>);
+};
 
 // 全体の画面
 export const App: React.FC<{}> = () => {
+
+  // ルーティングで切り替わる表示領域
+  const routes = routingList.map(r => {
+    return (<Route key={r.title} path={r.url}>{r.render}</Route>)
+  });
 
   return (
     <div className={style.app}>
@@ -36,7 +48,7 @@ export const App: React.FC<{}> = () => {
         </Link>
 
         {/* ナビゲーション */}
-        <nav>{nav}</nav>
+        <Navigation />
       </header>
 
       <main>

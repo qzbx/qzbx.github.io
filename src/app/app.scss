@@ -16,11 +16,13 @@ header { // ヘッダー
   background: palette.$header_bg;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 0 4%;
 
   a { // リンク付きのタイトル（Link タグ部分）
     text-decoration: none;
+    box-sizing: border-box;
+    height: inherit;
+    padding-top: 1.5rem;
     h1 {
       color: palette.$header_fg;
       font-size: 1.5rem;
@@ -31,16 +33,19 @@ header { // ヘッダー
 
   nav { // ナビゲーション
     display: flex;
-    height: 100%;
+    box-sizing: border-box;
+    height: inherit;
     a { // 各項目
       color: palette.$header_fg;
       list-style: none;
       box-sizing: border-box; // 相対計算をまともにするやつ
       height: inherit;
-      border-bottom: ridge plum 5px;
       margin-left: 1rem;
       padding: 2rem 1rem 0 1rem;
       text-decoration: none;
+    }
+    .on { // 現在表示中
+      border-bottom: ridge plum 5px;
     }
   }
 }
