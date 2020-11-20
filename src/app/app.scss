@@ -1,0 +1,65 @@
+@use "_palette";
+
+.app { // 画面全体
+  display: grid;
+  min-height: 100vh; // 画面全体を使う（高さ）
+  grid-template-columns: 1fr; // 横 1fr は残りってこと？
+  grid-template-rows: 4.5rem 1fr 4rem; // 縦
+  grid-template-areas:
+    "header   header  "
+    "aside    article "
+    "footer   footer  ";
+}
+
+header { // ヘッダー
+  grid-area: header;
+  background: palette.$header_bg;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4%;
+
+  a { // リンク付きのタイトル（Link タグ部分）
+    text-decoration: none;
+    h1 {
+      color: palette.$header_fg;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
+
+  nav { // ナビゲーション
+    display: flex;
+    height: 100%;
+    a { // 各項目
+      color: palette.$header_fg;
+      list-style: none;
+      box-sizing: border-box; // 相対計算をまともにするやつ
+      height: inherit;
+      border-bottom: ridge plum 5px;
+      margin-left: 1rem;
+      padding: 2rem 1rem 0 1rem;
+      text-decoration: none;
+    }
+  }
+}
+
+main { // コンテンツ
+  padding: 1rem 2rem;
+
+  .contents {
+  }
+}
+
+footer {
+  grid-area: footer;
+  background: palette.$footer_bg;
+  color: palette.$footer_fg;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
