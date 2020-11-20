@@ -3,13 +3,20 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SPA 側で URL に遷移させるための細工 -->
+    <script>
+      // / で分割した最後のパスしか保存されないので注意
+      sessionStorage.setItem("redirect", "/" + location.href.trim().split("/").pop());
+    </script>
+    <meta http-equiv="refresh" content="0;URL=./">
     <title>がらくた</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap" rel="stylesheet">
   </head>
   <body>
     <div id="root"></div>
-    <script src="dist/index.bundle.js"></script>
+    なにもない……
   </body>
 </html>
+
 
