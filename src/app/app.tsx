@@ -19,12 +19,12 @@ const routingList = [
 const Navigation: React.FC<{}> = () => {
   const location = useLocation(); // 現在のロケーションを取得
 
-  const nav = routingList.map(r => {
+  const nav = routingList.map((e, i) => { // (element, index)
     // 現在表示中の場合とその他で分岐
-    if (r.url === location.pathname) { // 表示中のページに対応するナビボタン
-      return (<Link key={r.title} className={style.on} to={r.url}>{r.title}</Link>);
+    if (e.url === location.pathname) { // 表示中のページに対応するナビボタン
+      return (<Link key={i} className={style.on} to={e.url}>{e.title}</Link>);
     } else {
-      return (<Link key={r.title} to={r.url}>{r.title}</Link>);
+      return (<Link key={i} to={e.url}>{e.title}</Link>);
     }
   });
 
@@ -35,8 +35,8 @@ const Navigation: React.FC<{}> = () => {
 export const App: React.FC<{}> = () => {
 
   // ルーティングで切り替わる表示領域
-  const routes = routingList.map(r => {
-    return (<Route key={r.title} path={r.url}>{r.comp}</Route>);
+  const routes = routingList.map((e, i) => {
+    return (<Route key={i} path={e.url}>{e.comp}</Route>);
   });
 
   return (
