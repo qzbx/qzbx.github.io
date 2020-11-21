@@ -25,29 +25,63 @@ const artworkList = [
 ];
 
 const artwork_width = 250; // 各アイテムの幅（px）
-const article_margin = 20; // ギャラリー外側のマージンの最小値（px）
+const article_margin = 10; // ギャラリー外側のマージンの最小値（px）
 const max_column_num = 6; // 最大カラム数
+
+// サイズ取得のために画像オブジェクトをリストで読み込む
+const imageList = artworkList.map(e => {
+  let image = new Image();
+  image.src = e.file;
+  return image;
+});
 
 export const Garalley: React.FC<{}> = () => {
 
   const width = useWindowWidth(); // 画面の幅を取得（useEffectかかってる）
+  let columnList = []; // i番目にi行目のアイテムリストが入る
+  let columnSizeList: number[] = []; // i番目にi行目の現在のサイズが入る
+
+  // レスポンシブ設定
   let column_num = 6; // for文で引っかからなかった（幅がでかい）場合はこの値
-  for (let i = 2; i <= max_column_num; ++i) {
-    if (width < artwork_width * i + article_margin * 2) {
+  for (let i = 2; i <= max_column_num + 1; ++i) {
+
+    // columnListの初期化（1列目だけ装填）
+    columnList.push([artworkList[i - 2]]); 
+
+    // 装填した画像分の高さ（調整済み）を記録
+    const image = imageList[i - 2];
+    columnSizeList.push(image.height * (artwork_width / image.width)); 
+
+    // レスポンシブ・表示幅の計算
+    if (width < artwork_width * i + article_margin * 2) { 
       column_num = i - 1;
       break;
     };
   };
-  console.log(column_num);
 
-  let columnList = []; // i番目にi行のアイテムリストが入る
-  // （とりあえず）modとって均等に各行にアイテムを割り振る
-  for (let column = 0; column < column_num; ++column) {
-    columnList.push(artworkList.filter((e, i) => {return i % column_num === column}));
+  // 各カラムへのアイテムの割り振り
+  for (let i = column_num; i < artworkList.length; ++i) {
+
+    // 最小カラムを調べる
+    let min_column_index = 1; // 最小カラムのindex
+    let current_min_height = Number.MAX_SAFE_INTEGER; // for文用
+    for (let j = 0; j < columnSizeList.length; ++j) {
+      if (columnSizeList[j] < current_min_height) { // 左優先
+        current_min_height = columnSizeList[j];
+        min_column_index = j;
+      };
+    }
+
+    // 高さ最小のカラムにアイテムを追加
+    columnList[min_column_index].push(artworkList[i]);
+
+    // 追加したカラムの高さ情報を更新
+    const image = imageList[i];
+    const increased_height = image.height * (artwork_width / image.width);
+    columnSizeList[min_column_index] += increased_height;
   };
-  console.log(columnList);
 
-  // イラスト一覧
+  // イラスト一覧（JSXタグ化）
   const artworks = columnList.map((col, i) => { // (element, index)
     const column = col.map((e, j) => { // 各行の要素をJSXに
       return (
@@ -64,6 +98,7 @@ export const Garalley: React.FC<{}> = () => {
     );
   });
 
+  // 描画
   return (
     <article>
       {artworks}
