@@ -6,8 +6,13 @@ import * as CONST from "./../../constants";
 // SCSS module import
 import style from "./exp.scss";
 
+interface Item { // 各画像アイテム
+  title: string;
+  file: string;
+}
+
 // アイテム情報リスト
-const artworkList = [
+const items: Item[] = [
   {title: "アイテム1", file: "http://lorempixel.com/400/300/nature/"},
   {title: "アイテム2", file: "http://lorempixel.com/400/400/sports/"},
   {title: "アイテム3", file: "http://lorempixel.com/400/200/city/"},
@@ -29,28 +34,35 @@ const article_margin = 10; // ギャラリー外側のマージンの最小値�
 const max_column_num = 6; // 最大カラム数
 
 // サイズ取得のために画像オブジェクトをリストで読み込む
-const imageList = artworkList.map(e => {
+const imageList = items.map(e => {
   let image = new Image();
   image.src = e.file;
   return image;
 });
 
+interface Column { // 各行
+  itemList: Item[]; // アイテムリスト
+  height: number; // 行の高さ
+}
+
 export const Garalley: React.FC<{}> = () => {
 
   const width = useWindowWidth(); // 画面の幅を取得（useEffectかかってる）
-  let columnList = []; // i番目にi行目のアイテムリストが入る
-  let columnSizeList: number[] = []; // i番目にi行目の現在のサイズが入る
+  let columnList: Column[] = []; // i番目にi行目のカラムが入る
 
   // レスポンシブ設定
   let column_num = 6; // for文で引っかからなかった（幅がでかい）場合はこの値
   for (let i = 2; i <= max_column_num + 1; ++i) {
 
-    // columnListの初期化（1列目だけ装填）
-    columnList.push([artworkList[i - 2]]); 
-
     // 装填した画像分の高さ（調整済み）を記録
     const image = imageList[i - 2];
-    columnSizeList.push(image.height * (artwork_width / image.width)); 
+
+    // columnListの初期化（1列目だけ装填）
+    const column: Column = {
+      itemList: [items[i - 2]],
+      height: image.height * (artwork_width / image.width),
+    };
+    columnList.push(column); 
 
     // レスポンシブ・表示幅の計算
     if (width < artwork_width * i + article_margin * 2) { 
@@ -60,30 +72,30 @@ export const Garalley: React.FC<{}> = () => {
   };
 
   // 各カラムへのアイテムの割り振り
-  for (let i = column_num; i < artworkList.length; ++i) {
+  for (let i = column_num; i < items.length; ++i) {
 
     // 最小カラムを調べる
-    let min_column_index = 1; // 最小カラムのindex
+    let index = 1; // 最小カラムのindex
     let current_min_height = Number.MAX_SAFE_INTEGER; // for文用
-    for (let j = 0; j < columnSizeList.length; ++j) {
-      if (columnSizeList[j] < current_min_height) { // 左優先
-        current_min_height = columnSizeList[j];
-        min_column_index = j;
+    for (let j = 0; j < columnList.length; ++j) {
+      if (columnList[j].height < current_min_height) { // 左優先
+        current_min_height = columnList[j].height;
+        index = j;
       };
     }
 
-    // 高さ最小のカラムにアイテムを追加
-    columnList[min_column_index].push(artworkList[i]);
-
-    // 追加したカラムの高さ情報を更新
     const image = imageList[i];
-    const increased_height = image.height * (artwork_width / image.width);
-    columnSizeList[min_column_index] += increased_height;
+    columnList[index] = {
+      // 高さ最小のカラムにアイテムを追加
+      itemList: columnList[index].itemList.concat(items[i]),
+      // 追加したカラムの高さ情報を更新
+      height: columnList[index].height + image.height * (artwork_width / image.width),
+    };
   };
 
   // イラスト一覧（JSXタグ化）
   const artworks = columnList.map((col, i) => { // (element, index)
-    const column = col.map((e, j) => { // 各行の要素をJSXに
+    const column = col.itemList.map((e, j) => { // 各行の要素をJSXに
       return (
         <div key={j} className={style.artwork}>
           {/* <img alt={a.title} src={CONST.RESOURCES_REPO + a.file} /> */}
