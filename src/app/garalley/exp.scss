@@ -1,0 +1,39 @@
+@use "./../palette";
+
+$artwork_width: 250px; // 各アイテムの幅
+$article_margin: 20px; // ギャラリー外側のマージンの最小値
+
+// レスポンシブ設定
+@mixin mq($column_num: 1) {
+  $article_width: $artwork_width * $column_num;
+  // min-width 以上なら適用される
+  @media screen and (min-width: #{$article_width + $article_margin * 2}) {
+    width: $article_width; // この幅の中で複数カラムになる
+    column-count: $column_num;
+  }
+}
+
+article {
+  margin: $article_margin auto; // 中央に配置
+  column-gap: 0px;
+
+  // レスポンシブ適用
+  @include mq(1);
+  @include mq(2);
+  @include mq(3);
+  @include mq(4);
+  @include mq(5);
+  @include mq(6);
+}
+
+.artwork {
+  page-break-inside: avoid; // アイテム内改行防止
+  break-inside: avoid;      // これも
+  width: $artwork_width;
+  padding: 10px;
+  box-sizing: border-box;
+
+  img {
+    width: 100%;
+  }
+}

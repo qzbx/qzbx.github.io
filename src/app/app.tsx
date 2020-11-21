@@ -1,7 +1,8 @@
 import * as React from "react";
 import { BrowserRouter, Switch, Route, Link, useLocation } from "react-router-dom";
 import * as CONST from "./../constants";
-import { Home } from "./home";
+import { Home } from "./home/exp";
+import { Garalley } from "./garalley/exp";
 
 // SCSS module import
 import style from "./app.scss";
@@ -9,9 +10,9 @@ import style from "./app.scss";
 
 // ルーティングするページの情報
 const routingList = [
-  {title: "About",     url: CONST.LOCATION_URL_ABOUT,      render: <p>わはー</p>},
-  {title: "Garalley",  url: CONST.LOCATION_URL_GARALLEY,   render: <p>おほー</p>},
-  {title: "Contact",   url: CONST.LOCATION_URL_CONTACT,    render: <p>あはー</p>},
+  {title: "About",     url: CONST.LOCATION_URL_ABOUT,     comp: <p>わはー</p>},
+  {title: "Garalley",  url: CONST.LOCATION_URL_GARALLEY,  comp: <Garalley />},
+  {title: "Contact",   url: CONST.LOCATION_URL_CONTACT,   comp: <p>あはー</p>},
 ];
 
 // ナビゲーション
@@ -35,7 +36,7 @@ export const App: React.FC<{}> = () => {
 
   // ルーティングで切り替わる表示領域
   const routes = routingList.map(r => {
-    return (<Route key={r.title} path={r.url}>{r.render}</Route>)
+    return (<Route key={r.title} path={r.url}>{r.comp}</Route>);
   });
 
   return (
@@ -52,12 +53,10 @@ export const App: React.FC<{}> = () => {
       </header>
 
       <main>
-        <div className={style.contents}>
-          <Switch>
-            <Route exact path={CONST.LOCATION_URL_HOME}><Home /></Route>
-            {routes}
-          </Switch>
-        </div>
+        <Switch>
+          <Route exact path={CONST.LOCATION_URL_HOME}><Home /></Route>
+          {routes}
+        </Switch>
       </main>
 
       <footer>&copy; 2020 わはー</footer>

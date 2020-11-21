@@ -10,3 +10,5 @@ export const LOCATIONS = [
   LOCATION_URL_CONTACT,
 ];
 
+export const RESOURCES_REPO = "https://raw.githubusercontent.com/qzbx/qzbx.github.io/resources/";
+

@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useHistory } from "react-router-dom";
-import * as CONST from "./../constants";
+import * as CONST from "./../../constants";
 
 // SCSS module import
-import style from "./app.scss";
+// import style from "./render.scss";
 
 // ホームの表示領域
 export const Home: React.FC<{}> = () => {

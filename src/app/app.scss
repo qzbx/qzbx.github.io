@@ -3,6 +3,7 @@
 .app { // 画面全体
   display: grid;
   min-height: 100vh; // 画面全体を使う（高さ）
+  box-sizing: border-box; // 相対計算をまともにする
   grid-template-columns: 1fr; // 横 1fr は残りってこと？
   grid-template-rows: 4.5rem 1fr 4rem; // 縦
   grid-template-areas:
@@ -20,7 +21,6 @@ header { // ヘッダー
 
   a { // リンク付きのタイトル（Link タグ部分）
     text-decoration: none;
-    box-sizing: border-box;
     height: inherit;
     padding-top: 1.5rem;
     h1 {
@@ -33,12 +33,10 @@ header { // ヘッダー
 
   nav { // ナビゲーション
     display: flex;
-    box-sizing: border-box;
     height: inherit;
     a { // 各項目
       color: palette.$header_fg;
       list-style: none;
-      box-sizing: border-box; // 相対計算をまともにするやつ
       height: inherit;
       margin-left: 1rem;
       padding: 2rem 1rem 0 1rem;
@@ -51,12 +49,8 @@ header { // ヘッダー
 }
 
 main { // コンテンツ
-  padding: 1rem 2rem;
   background: palette.$main_bg;
   color: palette.$main_fg;
-
-  .contents {
-  }
 }
 
 footer {
