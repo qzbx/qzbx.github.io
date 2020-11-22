@@ -11,7 +11,7 @@ const article_margin = 10; // ギャラリー外側のマージンの最小値�
 const max_column_num = 6; // 最大カラム数
 
 interface Column { // 各行
-  itemList: RES.Artwork[]; // アイテムリスト
+  artworks: RES.Artwork[]; // アイテムリスト
   height: number; // 行の高さ
 }
 
@@ -29,13 +29,13 @@ export const Garalley: React.FC<{imageList: HTMLImageElement[]}> = (props) => {
 
     // columnListの初期化（1列目だけ装填）
     const column: Column = {
-      itemList: [RES.ARTWORKS[i - 2]],
+      artworks: [RES.ARTWORKS[i - 2]],
       height: image.height * (entry_width / image.width),
     };
     columnList.push(column); 
 
     // レスポンシブ・表示幅の計算
-    if (width < entry_width * i + article_margin * 2) { 
+    if (width < entry_width * i + article_margin * 2 || RES.ARTWORKS.length < i) { 
       column_num = i - 1;
       break;
     };
@@ -57,19 +57,19 @@ export const Garalley: React.FC<{imageList: HTMLImageElement[]}> = (props) => {
     const image = props.imageList[i];
     columnList[index] = {
       // 高さ最小のカラムにアイテムを追加
-      itemList: columnList[index].itemList.concat(RES.ARTWORKS[i]),
+      artworks: columnList[index].artworks.concat(RES.ARTWORKS[i]),
       // 追加したカラムの高さ情報を更新
       height: columnList[index].height + image.height * (entry_width / image.width),
     };
   };
 
   // イラスト一覧（JSXタグ化）
-  const artworks = columnList.map((col, i) => { // (element, index)
-    const column = col.itemList.map((e, j) => { // 各行の要素をJSXに
+  const garalley = columnList.map((col, i) => { // (element, index)
+    const column = col.artworks.map((e, j) => { // 各行の要素をJSXに
       return (
         <div key={j} className={style.entry}>
-          {/* <img alt={a.title} src={CONST.RESOURCES_REPO + a.file} /> */}
-          <img alt={e.title} src={e.file} />
+          <img alt={a.title} src={CONST.RESOURCES_REPO + a.file} />
+          {/* <img alt={e.title} src={e.file} /> */}
         </div>
       );
     });
@@ -83,7 +83,7 @@ export const Garalley: React.FC<{imageList: HTMLImageElement[]}> = (props) => {
   // 描画
   return (
     <article>
-      {artworks}
+      {garalley}
     </article>
   );
 };
