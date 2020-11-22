@@ -21,9 +21,7 @@ const loadImageList: () => Promise<HTMLImageElement[]> = async () => {
   let imageList = [];
   for (let i = 0; i < ARTWORKS.length; ++i) { // ここは map 使用不可なん？
     const src = CONST.RESOURCES_REPO + CONST.ARTWORKS_DIR + CONST.THUMBNAIL_DIR + ARTWORKS[i].file;
-    console.log(i + "番目ロード中...");
     imageList.push(await loadImage(src)); // 順番にリストに入れてく
-    console.log(i + "番目ロードおわり");
   }
   return imageList;
 };
@@ -45,12 +43,17 @@ export const Viewer: React.FC<{}> = () => {
   const [viewer, setViewer] = useState(loadingView);
 
   useEffect(() => { // 最初の描画のときだけ呼び出す
+    const start = performance.now();
     loadImageList() // 画像オブジェクトのリスト読み込み
       .then(res => { // 画像リストが読み込めたら描画
-        setViewer(fadeout);
-        setTimeout(() => { // フェードアウトを表示させるための遅延
+        if (performance.now() - start < 1000) { // 1秒以内にロード完了の場合
           setViewer(<Garalley imageList={res} />);
-        }, duration * 1000);
+        } else { // 1秒以上かかった場合はフェードアウトを挟む
+          setViewer(fadeout);
+          setTimeout(() => { // フェードアウトを表示させるための遅延
+            setViewer(<Garalley imageList={res} />);
+          }, duration * 1000);
+        };
       });
   }, []);
 
