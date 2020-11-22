@@ -6,10 +6,6 @@ import * as RES from "./../../resources";
 // SCSS module import
 import style from "./garalley.scss";
 
-const entry_width = 250; // 各アイテムの幅（px）
-const article_margin = 10; // ギャラリー外側のマージンの最小値（px）
-const max_column_num = 6; // 最大カラム数
-
 interface Column { // 各行
   artworks: RES.Artwork[]; // アイテムリスト
   height: number; // 行の高さ
@@ -17,11 +13,17 @@ interface Column { // 各行
 
 export const Garalley: React.FC<{imageList: HTMLImageElement[]}> = (props) => {
 
+  const breakpoint = 480; // スマホ用にする幅のブレイクポイント（px）
   const width = useWindowWidth(); // 画面の幅を取得（state）
+  const article_margin = 10; // ギャラリー外側のマージンの最小値（px）
+  // 各アイテムの幅（px）スマホのときは幅の半分
+  const entry_width = (width > breakpoint) ? 230 : width / 2 - article_margin; 
+  console.log(entry_width);
+  const max_column_num = 7; // 最大カラム数
   let columnList: Column[] = []; // i番目にi行目のカラムが入る
 
   // レスポンシブ設定
-  let column_num = 6; // for文で引っかからなかった（幅がでかい）場合はこの値
+  let column_num = max_column_num; // for文で引っかからなかったときはこの値
   for (let i = 2; i <= max_column_num + 1; ++i) {
 
     // 装填した画像分の高さ（調整済み）を記録

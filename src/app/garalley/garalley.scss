@@ -2,7 +2,9 @@
 @use "./../animation";
 
 // 変数
-$entry_width: 250px; // 各アイテムの幅
+$breakpoint: 480px; // スマホ用にする幅のブレイクポイント
+$entry_width: 230px; // 各アイテムの幅
+$entry_width_sm: calc(100vw / 2 - 20px); // 各アイテムの幅（スマホ用）
 
 article {
   display: flex;
@@ -16,7 +18,9 @@ article {
   width: $entry_width;
   padding: 10px;
   box-sizing: border-box;
-
+  @media screen and (max-width: #{$breakpoint}) {
+    width: $entry_width_sm;
+  }
   @include animation.fadein();
 
   img {
