@@ -2,7 +2,7 @@ import * as React from "react";
 import { BrowserRouter, Switch, Route, Link, useLocation } from "react-router-dom";
 import * as CONST from "./../constants";
 import { Home } from "./home/exp";
-import { Garalley } from "./garalley/exp";
+import { Viewer } from "./garalley/exp";
 
 // SCSS module import
 import style from "./app.scss";
@@ -11,7 +11,7 @@ import style from "./app.scss";
 // ルーティングするページの情報
 const routingList = [
   {title: "About",     url: CONST.LOCATION_URL_ABOUT,     comp: <p>わはー</p>},
-  {title: "Garalley",  url: CONST.LOCATION_URL_GARALLEY,  comp: <Garalley />},
+  {title: "Garalley",  url: CONST.LOCATION_URL_GARALLEY,  comp: <Viewer />},
   {title: "Contact",   url: CONST.LOCATION_URL_CONTACT,   comp: <p>あはー</p>},
 ];
 
