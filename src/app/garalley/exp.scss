@@ -1,4 +1,5 @@
 @use "./../palette";
+@use "./../animation";
 
 .loading_view { // 読み込み中の表示コンポーネント
   margin-top: 40vh;
@@ -10,127 +11,11 @@
   }
 }
 
+.fadeout {
+  @include animation.fadeout();
+}
+
 .loader { // ローディングアニメーション（色は下ので指定）
-  font-size: 10px; // 各丸の位置はこれの相対サイズで計算される
-  width: 1em; // 各丸の幅
-  height: 1em; // 各丸の高さ
-  border-radius: 50%; // 丸を作る
-  animation: loader 1.1s infinite ease; // 下のアニメーション設定を指定
-  transform: translateZ(0);
-
-  $bcolor: rgba(255, 255, 255, 1.0);
-  $alpha7: rgba(255, 255, 255, 0.7);
-  $alpha5: rgba(255, 255, 255, 0.5);
-  $alpha2: rgba(255, 255, 255, 0.2);
-  $location: ( // north, east, ... 丸の表示位置
-    n:   0.00em -2.20em 0 0,
-    ne:  1.54em -1.54em 0 0,
-    e:   2.20em  0.00em 0 0,
-    se:  1.54em  1.54em 0 0,
-    s:   0.00em  2.20em 0 0,
-    sw: -1.54em  1.54em 0 0,
-    w:  -2.20em  0.00em 0 0,
-    nw: -1.54em -1.54em 0 0,
-  );
-
-  @keyframes loader { // 各フレームの設定
-    // {{{
-    0%, 100% {
-      box-shadow: 
-        map-get($location, n)  $bcolor,
-        map-get($location, ne) $alpha2,
-        map-get($location, e)  $alpha2,
-        map-get($location, se) $alpha2,
-        map-get($location, s)  $alpha2,
-        map-get($location, sw) $alpha2,
-        map-get($location, w)  $alpha5,
-        map-get($location, nw) $alpha7;
-    }
-
-    12.5% {
-      box-shadow: 
-        map-get($location, n)  $alpha7,
-        map-get($location, ne) $bcolor,
-        map-get($location, e)  $alpha2,
-        map-get($location, se) $alpha2,
-        map-get($location, s)  $alpha2,
-        map-get($location, sw) $alpha2,
-        map-get($location, w)  $alpha2,
-        map-get($location, nw) $alpha5;
-    }
-
-    25% {
-      box-shadow: 
-        map-get($location, n)  $alpha5,
-        map-get($location, ne) $alpha7,
-        map-get($location, e)  $bcolor,
-        map-get($location, se) $alpha2,
-        map-get($location, s)  $alpha2,
-        map-get($location, sw) $alpha2,
-        map-get($location, w)  $alpha2,
-        map-get($location, nw) $alpha2;
-    }
-
-    37.5% {
-      box-shadow: 
-        map-get($location, n)  $alpha2,
-        map-get($location, ne) $alpha5,
-        map-get($location, e)  $alpha7,
-        map-get($location, se) $bcolor,
-        map-get($location, s)  $alpha2,
-        map-get($location, sw) $alpha2,
-        map-get($location, w)  $alpha2,
-        map-get($location, nw) $alpha2;
-    }
-
-    50% {
-      box-shadow: 
-        map-get($location, n)  $alpha2,
-        map-get($location, ne) $alpha2,
-        map-get($location, e)  $alpha5,
-        map-get($location, se) $alpha7,
-        map-get($location, s)  $bcolor,
-        map-get($location, sw) $alpha2,
-        map-get($location, w)  $alpha2,
-        map-get($location, nw) $alpha2;
-    }
-
-    62.5% {
-      box-shadow: 
-        map-get($location, n)  $alpha2,
-        map-get($location, ne) $alpha2,
-        map-get($location, e)  $alpha2,
-        map-get($location, se) $alpha5,
-        map-get($location, s)  $alpha7,
-        map-get($location, sw) $bcolor,
-        map-get($location, w)  $alpha2,
-        map-get($location, nw) $alpha2;
-    }
-
-    75% {
-      box-shadow: 
-        map-get($location, n)  $alpha2,
-        map-get($location, ne) $alpha2,
-        map-get($location, e)  $alpha2,
-        map-get($location, se) $alpha2,
-        map-get($location, s)  $alpha5,
-        map-get($location, sw) $alpha7,
-        map-get($location, w)  $bcolor,
-        map-get($location, nw) $alpha2;
-    }
-
-    87.5% {
-      box-shadow: 
-        map-get($location, n)  $alpha2,
-        map-get($location, ne) $alpha2,
-        map-get($location, e)  $alpha2,
-        map-get($location, se) $alpha2,
-        map-get($location, s)  $alpha2,
-        map-get($location, sw) $alpha5,
-        map-get($location, w)  $alpha7,
-        map-get($location, nw) $bcolor;
-    }
-    // }}}
-  }
+  @include animation.eight();
 }
 

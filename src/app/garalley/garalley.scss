@@ -1,4 +1,5 @@
 @use "./../palette";
+@use "./../animation";
 
 // 変数
 $entry_width: 250px; // 各アイテムの幅
@@ -9,12 +10,14 @@ article {
   padding: 10px 0;
 }
 
-.entry {
+.entry { // 各アイテム
   page-break-inside: avoid; // アイテム内改行防止
   break-inside: avoid;      // これも
   width: $entry_width;
   padding: 10px;
   box-sizing: border-box;
+
+  @include animation.fadein();
 
   img {
     width: 100%;
