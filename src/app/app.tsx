@@ -52,14 +52,15 @@ export const App: React.FC<{}> = () => {
         <Navigation />
       </header>
 
-      <main>
-        <Switch>
-          <Route exact path={CONST.LOCATION_URL_HOME}><Home /></Route>
-          {routes}
-        </Switch>
-      </main>
-
-      <footer>&copy; 2020 わはー</footer>
+      <div className={style.wrapper}>
+        <main>
+          <Switch>
+            <Route exact path={CONST.LOCATION_URL_HOME}><Home /></Route>
+            {routes}
+          </Switch>
+        </main>
+        <footer>&copy; 2020 わはー</footer>
+      </div>
     </BrowserRouter>
     </div>
   );

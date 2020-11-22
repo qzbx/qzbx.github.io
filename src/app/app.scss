@@ -2,14 +2,13 @@
 
 .app { // 画面全体
   display: grid;
-  min-height: 100vh; // 画面全体を使う（高さ）
+  height: 100vh; // 画面全体を使う（高さ）
   box-sizing: border-box; // 相対計算をまともにする
-  grid-template-columns: 1fr; // 横 1fr は残りってこと？
-  grid-template-rows: 4.5rem 1fr 4rem; // 縦
+  grid-template-columns: 1fr; // 横 1fr は残り
+  grid-template-rows: 4.5rem 1fr; // 縦
   grid-template-areas:
-    "header   header  "
-    "aside    article "
-    "footer   footer  ";
+    "header"
+    "wrapper";
 }
 
 header { // ヘッダー
@@ -48,7 +47,33 @@ header { // ヘッダー
   }
 }
 
+.wrapper {
+  grid-area: wrapper;
+  overflow-y: auto; // 高さ足りないときはこの中でスクロール
+
+  &::-webkit-scrollbar { // スクロールバー設定
+    background: palette.$scbar_bg;
+  }
+  &::-webkit-scrollbar-thumb { // スクローラー
+    background: palette.$scbar_fg;
+  }
+  &::-webkit-scrollbar-button { // バー上下のボタン
+    display: none;
+  }
+
+  // グリッド入れ子
+  display: grid;
+  height: 100%; // 画面全体を使う（高さ）
+  box-sizing: border-box; // 相対計算をまともにする
+  grid-template-columns: 1fr; // 横 1fr は残り
+  grid-template-rows: 1fr 4rem; // 縦
+  grid-template-areas:
+    "main"
+    "footer";
+}
+
 main { // コンテンツ
+  grid-area: main;
   background: palette.$main_bg;
   color: palette.$main_fg;
 }
