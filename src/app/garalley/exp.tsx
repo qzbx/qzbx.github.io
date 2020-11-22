@@ -30,13 +30,20 @@ const loadImageList: () => Promise<HTMLImageElement[]> = async () => {
 
 export const Viewer: React.FC<{}> = () => {
 
-  const loadingView = <p>ロード中...</p>;
+  const loadingView = (
+    <div className={style.loading_view}>
+      <div className={style.loader} />
+      <p>Loading...</p>
+    </div>
+  );
   const [viewer, setViewer] = useState(loadingView);
 
   useEffect(() => { // 最初の描画のときだけ呼び出す
     loadImageList() // 画像オブジェクトのリスト読み込み
       .then(res => { // 画像リストが読み込めたら描画
+        setTimeout(function() { 
         setViewer(<Garalley imageList={res} />);
+        }, 5000);
       });
   }, []);
 
