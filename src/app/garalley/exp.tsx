@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useWindowWidth } from "@react-hook/window-size";
 import * as CONST from "./../../constants";
@@ -33,21 +34,14 @@ const artwork_width = 250; // 各アイテムの幅（px）
 const article_margin = 10; // ギャラリー外側のマージンの最小値（px）
 const max_column_num = 6; // 最大カラム数
 
-// サイズ取得のために画像オブジェクトをリストで読み込む
-const imageList = items.map(e => {
-  let image = new Image();
-  image.src = e.file;
-  return image;
-});
-
 interface Column { // 各行
   itemList: Item[]; // アイテムリスト
   height: number; // 行の高さ
 }
 
-export const Garalley: React.FC<{}> = () => {
+const Artworks: React.FC<{imageList: HTMLImageElement[]}> = (props) => {
 
-  const width = useWindowWidth(); // 画面の幅を取得（useEffectかかってる）
+  const width = useWindowWidth(); // 画面の幅を取得（state）
   let columnList: Column[] = []; // i番目にi行目のカラムが入る
 
   // レスポンシブ設定
@@ -55,7 +49,7 @@ export const Garalley: React.FC<{}> = () => {
   for (let i = 2; i <= max_column_num + 1; ++i) {
 
     // 装填した画像分の高さ（調整済み）を記録
-    const image = imageList[i - 2];
+    const image = props.imageList[i - 2];
 
     // columnListの初期化（1列目だけ装填）
     const column: Column = {
@@ -84,7 +78,7 @@ export const Garalley: React.FC<{}> = () => {
       };
     }
 
-    const image = imageList[i];
+    const image = props.imageList[i];
     columnList[index] = {
       // 高さ最小のカラムにアイテムを追加
       itemList: columnList[index].itemList.concat(items[i]),
@@ -118,3 +112,36 @@ export const Garalley: React.FC<{}> = () => {
   );
 };
 
+// 各画像の読み込み
+const loadImage: (src: string) => Promise<HTMLImageElement> = (src) => {
+  return new Promise((resolve, reject) => {
+    const image = new Image();
+    image.onload = () => resolve(image);
+    image.src = src;
+  });
+};
+
+// 画像オブジェクトリストの読み込み
+const loadImageList: () => Promise<HTMLImageElement[]> = async () => {
+  let imageList = [];
+  for (let i = 0; i < items.length; ++i) { // ここは map 使用不可なん？
+    imageList.push(await loadImage(items[i].file)); // 順番にリストに入れてく
+  }
+  return imageList;
+};
+
+export const Garalley: React.FC<{}> = () => {
+
+  const [garalley, setGaralley] = useState(<p>Loading...</p>);
+
+  useEffect(() => { // 最初の描画のときだけ呼び出す
+    loadImageList() // 画像オブジェクトのリスト読み込み
+      .then(res => { // 画像リストが読み込めたら描画
+        setGaralley(<Artworks imageList={res} />);
+      });
+  }, []);
+
+  return(
+    <article>{garalley}</article>
+  );
+};
