@@ -65,11 +65,11 @@ export const Garalley: React.FC<{imageList: HTMLImageElement[]}> = (props) => {
 
   // イラスト一覧（JSXタグ化）
   const garalley = columnList.map((col, i) => { // (element, index)
-    const column = col.artworks.map((e, j) => { // 各行の要素をJSXに
+    const column = col.artworks.map((aw, j) => { // 各行の要素をJSXに
+      const src = CONST.RESOURCES_REPO + CONST.ARTWORKS_DIR + CONST.THUMBNAIL_DIR + aw.file;
       return (
         <div key={j} className={style.entry}>
-          <img alt={a.title} src={CONST.RESOURCES_REPO + a.file} />
-          {/* <img alt={e.title} src={e.file} /> */}
+          <img alt={aw.title} src={src} />
         </div>
       );
     });

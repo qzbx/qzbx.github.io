@@ -20,7 +20,10 @@ const loadImage: (src: string) => Promise<HTMLImageElement> = (src) => {
 const loadImageList: () => Promise<HTMLImageElement[]> = async () => {
   let imageList = [];
   for (let i = 0; i < ARTWORKS.length; ++i) { // ここは map 使用不可なん？
-    imageList.push(await loadImage(ARTWORKS[i].file)); // 順番にリストに入れてく
+    const src = CONST.RESOURCES_REPO + CONST.ARTWORKS_DIR + CONST.THUMBNAIL_DIR + ARTWORKS[i].file;
+    console.log(i + "番目ロード中...");
+    imageList.push(await loadImage(src)); // 順番にリストに入れてく
+    console.log(i + "番目ロードおわり");
   }
   return imageList;
 };
