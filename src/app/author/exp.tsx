@@ -20,12 +20,13 @@ export const Contact: React.FC<{}> = () => {
     {icon: ICON.mastodon,   href: CONST.accounts.mastodon},
     {icon: ICON.github,     href: CONST.accounts.github},
     {icon: ICON.protonmail, href: "https://protonmail.com"},
-    {icon: ICON.pinterest,  href: CONST.accounts.pinterest},
     {icon: ICON.liberapay,  href: CONST.accounts.liberapay},
-    {icon: ICON.instagram,  href: CONST.accounts.instagram},
     {icon: ICON.twitter,    href: CONST.accounts.twitter},
+    {icon: ICON.pinterest,  href: CONST.accounts.pinterest},
+    {icon: ICON.instagram,  href: CONST.accounts.instagram},
     {icon: ICON.tumblr,     href: CONST.accounts.tumblr},
     {icon: ICON.pixiv,      href: CONST.accounts.pixiv},
+    {icon: ICON.sinaweibo,  href: CONST.accounts.sinaweibo},
   ];
 
   return(

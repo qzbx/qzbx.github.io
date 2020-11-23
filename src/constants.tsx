@@ -23,6 +23,7 @@ export const accounts = {
   pinterest: "https://www.pinterest.com/qzbx",
   pixiv: "https://www.pixiv.net/users/18470774",
   protonmail: "qzbx@pm.me",
+  sinaweibo: "https://weibo.com/garakuta",
   tumblr: "https://qzbx.tumblr.com",
   twitter: "https://twitter.com/bqrtz",
 };
