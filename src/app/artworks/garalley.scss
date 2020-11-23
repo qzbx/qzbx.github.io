@@ -16,7 +16,7 @@ $entry_width_sm: calc(100vw / 2 - 20px); // 各アイテムの幅（スマホ用
   page-break-inside: avoid; // アイテム内改行防止
   break-inside: avoid;      // これも
   width: $entry_width;
-  padding: 10px;
+  padding: 5px;
   box-sizing: border-box;
   @media screen and (max-width: #{$breakpoint}) {
     width: $entry_width_sm;
@@ -25,5 +25,6 @@ $entry_width_sm: calc(100vw / 2 - 20px); // 各アイテムの幅（スマホ用
 
   img {
     width: 100%;
+    border-radius: 9px;
   }
 }
