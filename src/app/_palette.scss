@@ -10,6 +10,7 @@ $darker:        #202020;
 $dark:          #2a2a2a;
 $darkergray:    #303030;
 $gray:          #808080; // = gray
+$lighter:       #e8e8e8;
 $white:         #ffffff; // = white
 
 // 紫系
@@ -23,7 +24,7 @@ $purple:        #af69ec;
 // ########################################
 
 $title: $white; // タイトル文字色
-$subtitle: $white; // ヘッダーとかフッターとかの文字色
+$subtitle: $lighter; // ヘッダーとかフッターとかの文字色
 $cover: $darker; // ヘッダーとかフッターとかの背景色
 $subcover: $darkergray; // サブの背景色（スクロールバー）
 
