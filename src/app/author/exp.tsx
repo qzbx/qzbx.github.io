@@ -34,11 +34,11 @@ const Contact: React.FC<{}> = () => {
   return(
     <div className={style.contact}>
       {accountList.map((acc, i) => {
-        const atag = (!acc.href) ? <>{acc.icon}</> : <a key={i} href={acc.href} target="_blank" rel="noopener noreferrer">{acc.icon}</a>;
+        const atag = (!acc.href) ? <>{acc.icon}</> : <a href={acc.href} target="_blank" rel="noopener noreferrer">{acc.icon}</a>;
         if (br.indexOf(i) >= 0) {
-          return(<>{atag}<br /></>)
+          return(<span key={i}>{atag}<br /></span>)
         } else {
-          return(<>{atag}</>)
+          return(<span key={i}>{atag}</span>)
         };
       })}
     </div>
