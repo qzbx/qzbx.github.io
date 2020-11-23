@@ -2,7 +2,7 @@ import * as React from "react";
 import { BrowserRouter, Switch, Route, Link, useLocation } from "react-router-dom";
 import * as CONST from "./../constants";
 import { Home } from "./home/exp";
-import { Viewer } from "./garalley/exp";
+import { Viewer } from "./artworks/exp";
 
 // SCSS module import
 import style from "./app.scss";
@@ -11,8 +11,8 @@ import style from "./app.scss";
 // ルーティングするページの情報
 const routingList = [
   {title: "About",     url: CONST.LOCATION_URL_ABOUT,     comp: <p>わはー</p>},
-  {title: "Garalley",  url: CONST.LOCATION_URL_GARALLEY,  comp: <Viewer />},
-  {title: "Contact",   url: CONST.LOCATION_URL_CONTACT,   comp: <p>あはー</p>},
+  {title: "Artworks",  url: CONST.LOCATION_URL_ARTWORKS,  comp: <Viewer />},
+  {title: "Author",    url: CONST.LOCATION_URL_AUTHOR,    comp: <p>あはー</p>},
 ];
 
 // ナビゲーション
