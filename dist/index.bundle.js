@@ -254,6 +254,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _nod
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/app/home/exp.scss":
+/*!****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-1!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/app/home/exp.scss ***!
+  \****************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);\n// Imports\n\nvar ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(false);\n___CSS_LOADER_EXPORT___.push([module.i, \"@import url(https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap);\"]);\n// Module\n___CSS_LOADER_EXPORT___.push([module.i, \"._1aUFu-P84MAUgsYeWDdpX2 {\\n  height: 100%;\\n  display: flex;\\n  flex-direction: column;\\n  justify-content: center;\\n  max-width: 350px;\\n  margin: 0 auto;\\n  padding: 2rem;\\n  animation-name: _3CZHfPGvBRQCIt-LeGcTlj;\\n  animation-duration: 3s;\\n  animation-fill-mode: both;\\n}\\n@keyframes _3CZHfPGvBRQCIt-LeGcTlj {\\n  from {\\n    opacity: 0;\\n  }\\n  to {\\n    opacity: 100;\\n  }\\n}\\n._1aUFu-P84MAUgsYeWDdpX2 ._3XEghwYXUznMf9jCZvWhyc {\\n  text-align: right;\\n  margin-bottom: 10rem;\\n}\\n._1aUFu-P84MAUgsYeWDdpX2 p {\\n  font-family: \\\"Sawarabi Mincho\\\", sans-serif;\\n  margin: 1rem 0;\\n}\", \"\"]);\n// Exports\n___CSS_LOADER_EXPORT___.locals = {\n\t\"wrapper\": \"_1aUFu-P84MAUgsYeWDdpX2\",\n\t\"fadeout\": \"_3CZHfPGvBRQCIt-LeGcTlj\",\n\t\"source\": \"_3XEghwYXUznMf9jCZvWhyc\"\n};\n/* harmony default export */ __webpack_exports__[\"default\"] = (___CSS_LOADER_EXPORT___);\n\n\n//# sourceURL=webpack:///./src/app/home/exp.scss?./node_modules/css-loader/dist/cjs.js??ref--6-1!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js");
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/runtime/api.js":
 /*!*****************************************************!*\
   !*** ./node_modules/css-loader/dist/runtime/api.js ***!
@@ -690,6 +702,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 /***/ }),
 
+/***/ "./src/app/home/exp.scss":
+/*!*******************************!*\
+  !*** ./src/app/home/exp.scss ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var api = __webpack_require__(/*! ../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ \"./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js\");\n            var content = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-1!../../../node_modules/postcss-loader/dist/cjs.js!../../../node_modules/sass-loader/dist/cjs.js!./exp.scss */ \"./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/app/home/exp.scss\");\n\n            content = content.__esModule ? content.default : content;\n\n            if (typeof content === 'string') {\n              content = [[module.i, content, '']];\n            }\n\nvar options = {};\n\noptions.insert = \"head\";\noptions.singleton = false;\n\nvar update = api(content, options);\n\n\n\nmodule.exports = content.locals || {};\n\n//# sourceURL=webpack:///./src/app/home/exp.scss?");
+
+/***/ }),
+
 /***/ "./src/app/home/exp.tsx":
 /*!******************************!*\
   !*** ./src/app/home/exp.tsx ***!
@@ -698,7 +721,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Home\", function() { return Home; });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ \"./node_modules/react-router-dom/esm/react-router-dom.js\");\n/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../constants */ \"./src/constants.tsx\");\n\n\n\n// SCSS module import\n// import style from \"./render.scss\";\n// ホームの表示領域\nvar Home = function () {\n    // URL 直叩きからのリダイレクトか判定\n    var redirect = sessionStorage.getItem(\"redirect\");\n    if (redirect) {\n        for (var _i = 0, _a = _constants__WEBPACK_IMPORTED_MODULE_2__[\"LOCATIONS\"]; _i < _a.length; _i++) {\n            var location_1 = _a[_i];\n            if (redirect === location_1) { // 404 で保存された値がページ URL と一致\n                var history_1 = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__[\"useHistory\"])();\n                history_1.push(redirect); // SPA 側での URL セット\n            }\n            ;\n        }\n        sessionStorage.removeItem(\"redirect\");\n    }\n    return (react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](\"p\", null, \"\\u307B\\u30FC\\u3080\"));\n};\n\n\n//# sourceURL=webpack:///./src/app/home/exp.tsx?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Home\", function() { return Home; });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ \"./node_modules/react-router-dom/esm/react-router-dom.js\");\n/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../constants */ \"./src/constants.tsx\");\n/* harmony import */ var _exp_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./exp.scss */ \"./src/app/home/exp.scss\");\n/* harmony import */ var _exp_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_exp_scss__WEBPACK_IMPORTED_MODULE_3__);\n\n\n\n// SCSS module import\n\n// ホームの表示領域\nvar Home = function () {\n    // URL 直叩きからのリダイレクトか判定\n    var redirect = sessionStorage.getItem(\"redirect\");\n    if (redirect) {\n        for (var _i = 0, _a = _constants__WEBPACK_IMPORTED_MODULE_2__[\"LOCATIONS\"]; _i < _a.length; _i++) {\n            var location_1 = _a[_i];\n            if (redirect === location_1) { // 404 で保存された値がページ URL と一致\n                var history_1 = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__[\"useHistory\"])();\n                history_1.push(redirect); // SPA 側での URL セット\n            }\n            ;\n        }\n        sessionStorage.removeItem(\"redirect\");\n    }\n    return (react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](\"div\", { className: _exp_scss__WEBPACK_IMPORTED_MODULE_3___default.a.wrapper },\n        react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](\"div\", { className: _exp_scss__WEBPACK_IMPORTED_MODULE_3___default.a.poem },\n            react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](\"p\", null, \"\\u5FC3\\u304C\\u3084\\u3089\\u308C\\u3066\\u3044\\u308B\\u4EBA\\u3005\\u306F\\u3001\\u5E78\\u3044\\u3067\\u3042\\u308B\\u3002\"),\n            react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](\"p\", null, \"\\u308F\\u306F\\u30FC\\u306E\\u56FD\\u306F\\u305D\\u306E\\u4EBA\\u305F\\u3061\\u306E\\u3082\\u306E\\u3067\\u3042\\u308B\\u3002\")),\n        react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](\"div\", { className: _exp_scss__WEBPACK_IMPORTED_MODULE_3___default.a.source },\n            react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](\"p\", null, \"\\u2015\\u2015 \\u307F\\u307F\\u3064\\u304D\\u306B\\u3088\\u308B\\u798F\\u97F3\\u66F8 9:25\"))));\n};\n\n\n//# sourceURL=webpack:///./src/app/home/exp.tsx?");
 
 /***/ }),
 

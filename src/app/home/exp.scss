@@ -1,0 +1,27 @@
+@use "./../palette";
+@use "./../animation";
+@import url('https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap');
+
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 350px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  @include animation.fadein(3.0s);
+
+  .source {
+    text-align: right;
+    margin-bottom: 10rem;
+  }
+
+  p {
+    font-family: "Sawarabi Mincho", sans-serif;
+    margin: 1rem 0;
+  }
+}
+
+

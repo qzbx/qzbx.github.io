@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import * as CONST from "./../../constants";
 
 // SCSS module import
-// import style from "./render.scss";
+import style from "./exp.scss";
 
 // ホームの表示領域
 export const Home: React.FC<{}> = () => {
@@ -20,6 +20,16 @@ export const Home: React.FC<{}> = () => {
     sessionStorage.removeItem("redirect");
   }
 
-  return(<p>ほーむ</p>);
+  return(
+    <div className={style.wrapper}>
+      <div className={style.poem}>
+        <p>心がやられている人々は、幸いである。</p>
+        <p>わはーの国はその人たちのものである。</p>
+      </div>
+      <div className={style.source}>
+        <p>―― みみつきによる福音書 9:25</p>
+      </div>
+    </div>
+  );
 };
 
