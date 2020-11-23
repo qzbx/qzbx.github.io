@@ -59,7 +59,7 @@ export const App: React.FC<{}> = () => {
             {routes}
           </Switch>
         </main>
-        <footer>&copy; 2020 わはー</footer>
+        <footer>&copy; 2020 なゆも</footer>
       </div>
     </BrowserRouter>
     </div>
