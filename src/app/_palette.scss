@@ -10,11 +10,15 @@ $darker:        #202020;
 $dark:          #2a2a2a;
 $darkergray:    #303030;
 $gray:          #808080; // = gray
+$light:         #d0d0d0;
 $lighter:       #e8e8e8;
 $white:         #ffffff; // = white
 
 // 紫系
 $purple:        #af69ec;
+
+// 黄色系
+$yellow:        #f2b233;
 
 
 // ########################################
@@ -29,13 +33,13 @@ $cover: $darker; // ヘッダーとかフッターとかの背景色
 $subcover: $darkergray; // サブの背景色（スクロールバー）
 
 $color: $white; // メインの文字色
-$subcolor: $white; // サブの文字色
+$subcolor: $light; // サブの文字色
 $background: $dark; // 全体の背景色
 $subbackground: $dark; // サブの背景色
 
 $accent_dark: $black;
 $accent: $purple;
-$highlight: $purple;
+$highlight: $yellow;
 
 
 // ########################################
@@ -61,3 +65,4 @@ $footer_fg: $subtitle; // フッターの文字色
 // その他
 $scbar_bg: $cover; // スクロールバーの背景色
 $scbar_fg: $subcover; // スクローラーの色
+

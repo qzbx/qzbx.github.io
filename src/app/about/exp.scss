@@ -1,0 +1,56 @@
+@use "./../palette";
+@use "./../animation";
+
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  @include animation.fadein();
+
+  section {
+    margin-bottom: 2.5rem;
+  }
+
+  h1 {
+    font-size: 1.3rem;
+    font-weight: normal;
+    margin-top: 1rem;
+    margin-left: 1rem;
+  }
+  hr {
+    border-color: palette.$accent;
+    border-width: 2pt;
+    margin-bottom: 1.5rem;
+  }
+  h2 {
+    font-size: 1.2rem;
+    font-weight: normal;
+    padding: 0.5rem;
+    display: inline-block;
+    border-bottom: solid palette.$highlight 1px;
+    margin-left: 0.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  p {
+    color: palette.$subcolor;
+    margin: 0 1.5rem;
+    line-height: 2.0rem;
+  }
+  ul {
+    padding-left: 2.5rem;
+    li {
+      color: palette.$subcolor;
+      line-height: 2.0rem;
+    }
+    ul {
+      padding-left: 1.5rem;
+    }
+  }
+}
+

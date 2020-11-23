@@ -4,6 +4,7 @@ import * as CONST from "./../constants";
 import { Home } from "./home/exp";
 import { Viewer } from "./artworks/exp";
 import { Profile } from "./author/exp";
+import { About } from "./about/exp";
 
 // SCSS module import
 import style from "./app.scss";
@@ -11,7 +12,7 @@ import style from "./app.scss";
 
 // ルーティングするページの情報
 const routingList = [
-  {title: "About",     url: CONST.LOCATION_URL_ABOUT,     comp: <p>わはー</p>},
+  {title: "About",     url: CONST.LOCATION_URL_ABOUT,     comp: <About />},
   {title: "Artworks",  url: CONST.LOCATION_URL_ARTWORKS,  comp: <Viewer />},
   {title: "Author",    url: CONST.LOCATION_URL_AUTHOR,    comp: <Profile />},
 ];
