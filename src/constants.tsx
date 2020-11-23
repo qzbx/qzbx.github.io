@@ -16,6 +16,7 @@ export const ARTWORKS_DIR = "artworks/";
 export const THUMBNAIL_DIR = "thumbnail/";
 
 export const accounts = {
+  discord: "エ〜ン#3223",
   github: "https://github.com/qzbx",
   instagram: "https://www.instagram.com/yumottie",
   liberapay: "https://liberapay.com/qzbx/",
