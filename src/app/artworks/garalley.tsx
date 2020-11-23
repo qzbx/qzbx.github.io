@@ -84,9 +84,9 @@ export const Garalley: React.FC<{imageList: HTMLImageElement[]}> = (props) => {
 
   // 描画
   return (
-    <article>
+    <div className={style.wrapper}>
       {garalley}
-    </article>
+    </div>
   );
 };
 

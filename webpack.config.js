@@ -35,11 +35,6 @@ module.exports = {
           "postcss-loader", "sass-loader"
         ],
       },
-
-      { // svg 用
-        test: /\.svg$/,
-        loaders: "url-loader",
-      },
     ]
   },
   resolve: {

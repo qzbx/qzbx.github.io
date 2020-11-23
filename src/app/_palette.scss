@@ -5,7 +5,7 @@
 // ########################################
 
 // 無彩色
-$black:         #000000; // = black
+$black:         #101010;
 $darker:        #202020;
 $dark:          #2a2a2a;
 $darkergray:    #303030;
@@ -33,6 +33,7 @@ $subcolor: $white; // サブの文字色
 $background: $dark; // 全体の背景色
 $subbackground: $dark; // サブの背景色
 
+$accent_dark: $black;
 $accent: $purple;
 $highlight: $purple;
 
