@@ -1,8 +1,7 @@
 import * as React from "react";
 import { useHistory } from "react-router-dom";
 import * as CONST from "./../../constants";
-
-// SCSS module import
+import { loadImageList } from "./../artworks/exp";
 import style from "./exp.scss";
 
 // ホームの表示領域
@@ -19,6 +18,8 @@ export const Home: React.FC<{}> = () => {
     }
     sessionStorage.removeItem("redirect");
   }
+
+  loadImageList(); // 裏で画像リスト読み込みをしておく
 
   return(
     <div className={style.wrapper}>

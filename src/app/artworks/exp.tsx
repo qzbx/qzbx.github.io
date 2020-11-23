@@ -17,7 +17,7 @@ const loadImage: (src: string) => Promise<HTMLImageElement> = (src) => {
 };
 
 // 画像オブジェクトリストの読み込み
-const loadImageList: () => Promise<HTMLImageElement[]> = async () => {
+export const loadImageList: () => Promise<HTMLImageElement[]> = async () => {
   let imageList = [];
   for (let i = 0; i < ARTWORKS.length; ++i) { // ここは map 使用不可なん？
     const src = CONST.RESOURCES_REPO + CONST.ARTWORKS_DIR + CONST.THUMBNAIL_DIR + ARTWORKS[i].file;
