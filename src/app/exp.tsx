@@ -7,7 +7,7 @@ import { Profile } from "./author/exp";
 import { About } from "./about/exp";
 
 // SCSS module import
-import style from "./app.scss";
+import style from "./exp.scss";
 
 
 // ルーティングするページの情報
