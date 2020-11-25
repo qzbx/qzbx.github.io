@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
+import { Loader } from "garakuta";
 import * as CONST from "./../../constants";
 import { ARTWORKS } from "./../../resources";
 import { Garalley } from "./garalley";
@@ -31,7 +32,7 @@ export const Viewer: React.FC<{}> = () => {
   // ロード中の画面
   const loadingView = (
     <div className={style.loading_view}>
-      <div className={style.loader} />
+      <Loader />
       <p>Loading...</p>
     </div>
   );

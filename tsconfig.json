@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
-    "sourceMap": true,
-    "strict": true,
     "target": "es5",
     "module": "esnext",
+    "strict": true,
     "jsx": "react",
     "moduleResolution": "node",
     "lib": [
