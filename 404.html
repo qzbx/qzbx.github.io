@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- SPA 側で URL に遷移させるための細工 -->
     <script>
-      // / で分割した最後のパスしか保存されないので注意
-      sessionStorage.setItem("redirect", "/" + location.href.trim().split("/").pop());
+      sessionStorage.setItem("redirect", "/" + location.href.trim().split("/", 4).pop());
     </script>
-    <meta http-equiv="refresh" content="0;URL=./">
+    <meta http-equiv="refresh" content="0;URL=/">
     <title>がらくた</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap" rel="stylesheet">
@@ -18,6 +17,7 @@
       }
       p {
         margin: 1rem;
+        color: white;
       }
     </style>
   </head>
