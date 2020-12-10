@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useHistory } from "react-router-dom";
 import * as CONST from "./../../constants";
-import { loadImageList } from "./../artworks/exp";
-import style from "./exp.scss";
+import { loadImageList } from "./../artworks/view";
+import style from "./view.scss";
 
 // ホームの表示領域
 export const Home: React.FC<{}> = () => {

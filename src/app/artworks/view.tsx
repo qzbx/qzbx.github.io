@@ -5,7 +5,7 @@ import { ARTWORKS } from "./../../resources";
 import { Garalley } from "./garalley";
 
 // SCSS module import
-import style from "./exp.scss";
+import style from "./view.scss";
 
 // 各画像の読み込み
 const loadImage: (src: string) => Promise<HTMLImageElement> = (src) => {

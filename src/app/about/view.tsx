@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as CONST from "./../../constants";
-import style from "./exp.scss";
+import style from "./view.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-regular-svg-icons";
 import { faCode } from "@fortawesome/free-solid-svg-icons";
