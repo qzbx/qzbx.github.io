@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import * as CONST from "./../../constants";
-import { ARTWORKS } from "./../../resources";
+import { ARTWORKS } from "./../../assets";
 import { Garalley } from "./garalley";
 
 // SCSS module import
@@ -20,7 +20,7 @@ const loadImage: (src: string) => Promise<HTMLImageElement> = (src) => {
 export const loadImageList: () => Promise<HTMLImageElement[]> = async () => {
   let imageList = [];
   for (let i = 0; i < ARTWORKS.length; ++i) { // ここは map 使用不可なん？
-    const src = CONST.RESOURCES_REPO + CONST.ARTWORKS_DIR + CONST.THUMBNAIL_DIR + ARTWORKS[i].file;
+    const src = CONST.ARTWORKS_REPO + CONST.THUMBNAIL_DIR + ARTWORKS[i].file;
     imageList.push(await loadImage(src)); // 順番にリストに入れてく
   }
   return imageList;

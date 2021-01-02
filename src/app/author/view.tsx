@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as CONST from "./../../constants";
-import * as RES from "./../../resources";
+import * as RES from "./../../assets";
 import * as ICON from "./../../icons/list";
 import style from "./view.scss";
 

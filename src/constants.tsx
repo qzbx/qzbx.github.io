@@ -10,9 +10,8 @@ export const LOCATIONS = [
   LOCATION_URL_AUTHOR,
 ];
 
-export const RESOURCES_REPO = "https://raw.githubusercontent.com/qzbx/qzbx.github.io/resources/";
+export const ARTWORKS_REPO = "https://raw.githubusercontent.com/qzbx/qzbx.github.io/artworks/";
 
-export const ARTWORKS_DIR = "artworks/";
 export const THUMBNAIL_DIR = "thumbnail/";
 
 export const accounts = {

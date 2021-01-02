@@ -1,13 +1,13 @@
 import * as React from "react";
 import { useWindowWidth } from "@react-hook/window-size";
 import * as CONST from "./../../constants";
-import * as RES from "./../../resources";
+import * as ASSETS from "./../../assets";
 
 // SCSS module import
 import style from "./garalley.scss";
 
 interface Column { // 各行
-  artworks: RES.Artwork[]; // アイテムリスト
+  artworks: ASSETS.Artwork[]; // アイテムリスト
   height: number; // 行の高さ
 }
 
@@ -31,20 +31,20 @@ export const Garalley: React.FC<{imageList: HTMLImageElement[]}> = (props) => {
 
     // columnListの初期化（1列目だけ装填）
     const column: Column = {
-      artworks: [RES.ARTWORKS[i - 2]],
+      artworks: [ASSETS.ARTWORKS[i - 2]],
       height: image.height * (entry_width / image.width),
     };
     columnList.push(column); 
 
     // レスポンシブ・表示幅の計算
-    if (width < entry_width * i + article_margin * 2 || RES.ARTWORKS.length < i) { 
+    if (width < entry_width * i + article_margin * 2 || ASSETS.ARTWORKS.length < i) { 
       column_num = i - 1;
       break;
     };
   };
 
   // 各カラムへのアイテムの割り振り
-  for (let i = column_num; i < RES.ARTWORKS.length; ++i) {
+  for (let i = column_num; i < ASSETS.ARTWORKS.length; ++i) {
 
     // 最小カラムを調べる
     let index = 1; // 最小カラムのindex
@@ -59,7 +59,7 @@ export const Garalley: React.FC<{imageList: HTMLImageElement[]}> = (props) => {
     const image = props.imageList[i];
     columnList[index] = {
       // 高さ最小のカラムにアイテムを追加
-      artworks: columnList[index].artworks.concat(RES.ARTWORKS[i]),
+      artworks: columnList[index].artworks.concat(ASSETS.ARTWORKS[i]),
       // 追加したカラムの高さ情報を更新
       height: columnList[index].height + image.height * (entry_width / image.width),
     };
@@ -68,7 +68,7 @@ export const Garalley: React.FC<{imageList: HTMLImageElement[]}> = (props) => {
   // イラスト一覧（JSXタグ化）
   const garalley = columnList.map((col, i) => { // (element, index)
     const column = col.artworks.map((aw, j) => { // 各行の要素をJSXに
-      const src = CONST.RESOURCES_REPO + CONST.ARTWORKS_DIR + CONST.THUMBNAIL_DIR + aw.file;
+      const src = CONST.ARTWORKS_REPO + CONST.THUMBNAIL_DIR + aw.file;
       return (
         <div key={j} className={style.entry}>
           <img alt={aw.title} src={src} />
