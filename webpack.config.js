@@ -14,7 +14,7 @@ module.exports = {
       { // tsx 用
         test: /\.tsx?$/,
         use: "ts-loader",
-        // exclude: /node_modules/
+        exclude: /node_modules(?!\/garakuta)/,
       },
       
       { // css 用
