@@ -1,13 +1,13 @@
 import * as React from "react";
 import { BrowserRouter, Switch, Route, Link, useLocation } from "react-router-dom";
 import * as CONST from "./../constants";
-import { Home } from "./home/exp";
-import { Viewer } from "./artworks/exp";
-import { Profile } from "./author/exp";
-import { About } from "./about/exp";
+import { Home } from "./home/view";
+import { Viewer } from "./artworks/view";
+import { Profile } from "./author/view";
+import { About } from "./about/view";
 
 // SCSS module import
-import style from "./exp.scss";
+import style from "./view.scss";
 
 
 // ルーティングするページの情報

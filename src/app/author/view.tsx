@@ -2,7 +2,7 @@ import * as React from "react";
 import * as CONST from "./../../constants";
 import * as RES from "./../../resources";
 import * as ICON from "./../../icons/list";
-import style from "./exp.scss";
+import style from "./view.scss";
 
 const Bio: React.FC<{}> = () => {
   return(
