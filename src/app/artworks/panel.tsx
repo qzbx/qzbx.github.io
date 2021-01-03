@@ -27,16 +27,22 @@ export const Panel: React.FC<{artwork: Artwork}> = (props) => {
     const padding = 100; // モーダルと表示領域との隙間（上下 or 左右 -> 値は２倍）
     const width = windowWidth - padding; // 隙間を適用
     const height = windowHeight - padding;
-    const wdiff = width - img.width;    // 画面幅と画像幅の差分
-    const hdiff = height - img.height;  // diff の数値が小さいほうがフィットする
+
+    // 比率に合わせて計算した幅・高さ
+    const resizedWidth = img.width * (height / img.height); // height 時の画像の幅
+    const resizedHeight = img.height * (width / img.width); // width 時の画像の高さ
+    const wdiff = width - resizedWidth;    // 画面幅と調整後画像幅の差分
+    const hdiff = height - resizedHeight;  // マイナス値分だけ飛び出している
 
     // 画面表示パネル（モーダル）のサイズを計算
     // そもそも画像が画面領域より完全に小さければ画像のオリジナルサイズで表示
-    // それ以外は縦横のうち画面と画像との差分が少ないほうに合わせて比率を計算
+    // それ以外は縦横のうち調整後画像で画面から飛び出すほうに合わせて比率を計算
     const panelWidth = img.width < width && img.height < height ? img.width :
-      wdiff < hdiff ? width : img.width * (height / img.height);
+      wdiff < hdiff ? width : resizedWidth;
     const panelHeight = img.width < width && img.height < height ? img.height :
-      wdiff < hdiff ? img.height * (width / img.width) : height;
+      wdiff < hdiff ? resizedHeight : height;
+    console.log(`wdiff: ${wdiff}, hdiff: ${hdiff}`);
+    console.log(`(${width}, ${resizedHeight}), (${resizedWidth}, ${height})`);
 
     const zp: (num: Number) => String = (num) => { // 2桁のゼロパディング
       return ("00" + String(num)).slice(-2);
