@@ -50,8 +50,11 @@ export const Panel: React.FC<{artwork: Artwork}> = (props) => {
       >
         <img alt={aw.title} src={src} />
         <div className={c.desc}>
-          <p>{aw.title}</p>
-          <p>{String(aw.date.y)}/{zp(aw.date.m)}/{zp(aw.date.d)}</p>
+          <h1>{aw.title}</h1>
+          <p className={c.date}>{String(aw.date.y)}/{zp(aw.date.m)}/{zp(aw.date.d)}</p>
+          {aw.origin &&
+            <p className={c.origin}><span>from</span> {aw.origin}</p>
+          }
         </div>
       </div>
     );
