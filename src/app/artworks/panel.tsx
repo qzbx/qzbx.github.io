@@ -6,6 +6,50 @@ import { Artwork } from "./../../assets";
 import { loadImage } from "./view";
 import c from "./panel.scss";
 
+// 画像の情報表示領域（画像下部にオーバレイで出すやつ）
+const Desc: React.FC<{aw: Artwork; isMobile: Boolean; open: Boolean;}> = (props) => { 
+
+  const aw = props.aw; // alias
+  const zp: (num: Number) => String = (num) => { // 2桁のゼロパディング
+    return ("00" + String(num)).slice(-2);
+  };
+
+  // 表示領域のコンテンツ
+  const content = (<>
+    <h1>{aw.title}</h1>
+    <p className={c.date}>
+      {String(aw.date.y)}/{zp(aw.date.m)}/{zp(aw.date.d)}
+    </p>
+    {aw.origin &&
+      <p className={c.origin}><span>from</span> {aw.origin}</p>
+    }
+  </>);
+
+  if (!props.isMobile) { // PC
+    return (
+      <div className={`${c.desc} ${c.slideout} ${c.stay}`}>
+        <>{content}</>
+      </div>
+    );
+  } else { // スマホ
+    if (props.open) { // 開く（スライドイン）
+      return (
+        <div className={`${c.desc} ${c.slidein}`}>
+          <>{content}</>
+        </div>
+      );
+    } else {
+      return ( // 閉じる（スライドアウト）
+        <div className={`${c.desc} ${c.slideout}`}>
+          <>{content}</>
+        </div>
+      );
+    };
+  };
+};
+
+
+// モーダルで表示する画像のパネル
 export const Panel: React.FC<{artwork: Artwork}> = (props) => {
 
   const aw = props.artwork; // alias
@@ -21,11 +65,13 @@ export const Panel: React.FC<{artwork: Artwork}> = (props) => {
 
   const [windowWidth, windowHeight] = useWindowSize(); // 画面サイズを取得（state）
   const [panel, setPanel] = useState(<>{loading}</>); // モーダルのコンテナ
+  const [descOpen, setDescOpen] = useState(false); // スマホでの desc 表示状態
   const renderPanel = async () => { // 画像を読み込んで描画をセット
 
     const img = await loadImage(src); // 画像を読み込み
+    const isMobile = windowWidth <= CONST.BPW; // BPW 以下の幅ならスマホ扱い
     // モーダルと表示領域との隙間（上下 or 左右 -> 値は２倍）
-    const padding = windowWidth > CONST.BPW ? 100 : 20; // PC 100, スマホ 20
+    const padding = isMobile ? 20 : 100; // スマホ 20 PC 100 
     const width = windowWidth - padding; // 隙間を適用
     const height = windowHeight - padding;
 
@@ -42,12 +88,6 @@ export const Panel: React.FC<{artwork: Artwork}> = (props) => {
       wdiff < hdiff ? width : resizedWidth;
     const panelHeight = img.width < width && img.height < height ? img.height :
       wdiff < hdiff ? resizedHeight : height;
-    console.log(`wdiff: ${wdiff}, hdiff: ${hdiff}`);
-    console.log(`(${width}, ${resizedHeight}), (${resizedWidth}, ${height})`);
-
-    const zp: (num: Number) => String = (num) => { // 2桁のゼロパディング
-      return ("00" + String(num)).slice(-2);
-    };
 
     setPanel(
       <div 
@@ -55,21 +95,20 @@ export const Panel: React.FC<{artwork: Artwork}> = (props) => {
         style={{width: panelWidth, height: panelHeight,}}
         onClick={e => {e.stopPropagation();}}
       >
-        <img alt={aw.title} src={src} />
-        <div className={c.desc}>
-          <h1>{aw.title}</h1>
-          <p className={c.date}>{String(aw.date.y)}/{zp(aw.date.m)}/{zp(aw.date.d)}</p>
-          {aw.origin &&
-            <p className={c.origin}><span>from</span> {aw.origin}</p>
-          }
-        </div>
+        <img 
+          alt={aw.title} 
+          src={src} 
+          className={!isMobile ? c.trigger : c.null} // ホバーアクション
+          onClick={() => {isMobile && setDescOpen(!descOpen);}}
+        />
+        <Desc isMobile={isMobile} aw={aw} open={descOpen} />
       </div>
     );
   };
 
   useEffect(() => { // 初回呼び出しと画面サイズ変更時に描画をセット
     renderPanel(); 
-  }, [windowWidth, windowHeight]);
+  }, [windowWidth, windowHeight, descOpen]); // descOpen ないと更新されん
 
   return (
     <>{panel}</>

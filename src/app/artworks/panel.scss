@@ -2,6 +2,8 @@
 @use "./../animation";
 @use "~garakuta/lib/index" as *;
 
+$breakpoint: 480px; // スマホ用にする幅のブレイクポイント
+
 .container {
   position: relative;
   background: red;
@@ -12,16 +14,31 @@
     width: 100%;
     height: 100%;
 
+  }
+
+  .trigger { // PC 表示の img に適用させる用
     &:hover + .desc { // img にホバー時の .desc の設定
-      visibility: visible; // .desc を表示
       @include animation.slideInFromBelow($duration: 0.3s);
     }
   }
-  
+
+  .slidein { // スマホの .desc に適用
+    @include animation.slideInFromBelow($duration: 0.3s);
+  }
+
+  .stay:hover { // PC 表示の .desc に適用させる 自分にホバー時の設定
+    @include animation.slideInFromBelow($duration: 0.3s);
+  }
+
+  .slideout { // PC 表示の .desc （とスマホの .desc） に適用させる用
+    // PC では基本状態は欄外にスライドアウトで隠れてる
+    @include animation.slideOutToBelow($duration: 0.3s);
+  }
+
   & > .desc { // 情報表示欄
     position: absolute;
     left: 0; right: 0; bottom: 0;
-    padding: 1.2rem 1.8rem;
+    padding: 0.8rem 1.6rem 1.2rem 1.6rem;
     background: pl.$header_bg;
     opacity: 0.9;
     display: grid;
@@ -34,11 +51,14 @@
     & > h1 {
       grid-area: title;
       font-weight: normal;
+      font-size: 1rem;
+      line-height: 1.6rem;
     }
 
     & > p.date {
       grid-area: date;
       text-align: right;
+      padding-top: 0.4rem;
       font-size: 0.8rem;
     }
 
@@ -50,14 +70,7 @@
       & > span { font-size: 0.5rem; }
     }
 
-    // 基本状態は欄外にスライドアウトで隠れてる
-    @include animation.slideOutToBelow($duration: 0.3s);
-    &:hover { // img:hover に加えて自分にホバー時も表示
-      @include animation.slideInFromBelow($duration: 0.3s);
-    }
-
   } // .desc
-
 } // .container
 
 
@@ -74,4 +87,8 @@
     margin-left: 2.2rem;
   }
 }
+
+
+.null {}
+
 
