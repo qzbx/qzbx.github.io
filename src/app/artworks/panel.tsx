@@ -38,6 +38,10 @@ export const Panel: React.FC<{artwork: Artwork}> = (props) => {
     const panelHeight = img.width < width && img.height < height ? img.height :
       wdiff < hdiff ? img.height * (width / img.width) : height;
 
+    const zp: (num: Number) => String = (num) => { // 2桁のゼロパディング
+      return ("00" + String(num)).slice(-2);
+    };
+
     setPanel(
       <div 
         className={c.container} 
@@ -47,14 +51,15 @@ export const Panel: React.FC<{artwork: Artwork}> = (props) => {
         <img alt={aw.title} src={src} />
         <div className={c.desc}>
           <p>{aw.title}</p>
+          <p>{String(aw.date.y)}/{zp(aw.date.m)}/{zp(aw.date.d)}</p>
         </div>
       </div>
     );
   };
 
-  useEffect(() => { // 初回呼び出しで描画をセット
+  useEffect(() => { // 初回呼び出しと画面サイズ変更時に描画をセット
     renderPanel(); 
-  }, []);
+  }, [windowWidth, windowHeight]);
 
   return (
     <>{panel}</>
