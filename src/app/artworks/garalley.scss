@@ -17,6 +17,7 @@ $entry_width_sm: calc(100vw / 2 - 20px); // 各アイテムの幅（スマホ用
   break-inside: avoid;      // これも
   width: $entry_width;
   padding: 5px;
+  cursor: pointer;
   box-sizing: border-box;
   @media screen and (max-width: #{$breakpoint}) {
     width: $entry_width_sm;
@@ -27,4 +28,9 @@ $entry_width_sm: calc(100vw / 2 - 20px); // 各アイテムの幅（スマホ用
     width: 100%;
     border-radius: 9px;
   }
+}
+
+.mask { // モーダルのマスク
+  opacity: 0.92;
+  background: black;
 }

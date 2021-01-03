@@ -13,6 +13,7 @@ export const LOCATIONS = [
 export const ARTWORKS_REPO = "https://raw.githubusercontent.com/qzbx/qzbx.github.io/artworks/";
 
 export const THUMBNAIL_DIR = "thumbnail/";
+export const ORIGINAL_DIR = "original/";
 
 export const accounts = {
   discord: "エ〜ン#3223",

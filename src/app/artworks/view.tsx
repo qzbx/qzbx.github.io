@@ -8,7 +8,7 @@ import { Garalley } from "./garalley";
 import style from "./view.scss";
 
 // 各画像の読み込み
-const loadImage: (src: string) => Promise<HTMLImageElement> = (src) => {
+export const loadImage: (src: string) => Promise<HTMLImageElement> = (src) => {
   return new Promise((resolve, reject) => {
     const image = new Image();
     image.onload = () => resolve(image);

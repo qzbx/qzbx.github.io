@@ -1,5 +1,8 @@
 import * as React from "react";
+import { useState } from "react";
 import { useWindowWidth } from "@react-hook/window-size";
+import { Modal } from "garakuta";
+import { Panel } from "./panel";
 import * as CONST from "./../../constants";
 import * as ASSETS from "./../../assets";
 
@@ -18,7 +21,6 @@ export const Garalley: React.FC<{imageList: HTMLImageElement[]}> = (props) => {
   const article_margin = 10; // ギャラリー外側のマージンの最小値（px）
   // 各アイテムの幅（px）スマホのときは幅の半分
   const entry_width = (width > breakpoint) ? 230 : width / 2 - article_margin; 
-  console.log(entry_width);
   const max_column_num = 7; // 最大カラム数
   let columnList: Column[] = []; // i番目にi行目のカラムが入る
 
@@ -65,12 +67,20 @@ export const Garalley: React.FC<{imageList: HTMLImageElement[]}> = (props) => {
     };
   };
 
+  // モーダル（パネル）関連
+  const [open, setOpen] = useState(false); // true で絵の拡大表示モーダルを表示
+  const [artwork, setArtwork] = useState<ASSETS.Artwork | null>(); // 表示する絵
+
   // イラスト一覧（JSXタグ化）
   const garalley = columnList.map((col, i) => { // (element, index)
     const column = col.artworks.map((aw, j) => { // 各行の要素をJSXに
       const src = CONST.ARTWORKS_REPO + CONST.THUMBNAIL_DIR + aw.file;
       return (
-        <div key={j} className={style.entry}>
+        <div 
+          key={j} 
+          className={style.entry}
+          onClick={() => {setOpen(true); setArtwork(aw);}}
+        >
           <img alt={aw.title} src={src} />
         </div>
       );
@@ -83,10 +93,18 @@ export const Garalley: React.FC<{imageList: HTMLImageElement[]}> = (props) => {
   });
 
   // 描画
-  return (
+  return (<>
     <div className={style.wrapper}>
       {garalley}
     </div>
-  );
+    {open && artwork &&
+      <Modal.Simple
+        className={style.mask}
+        onClick={() => setOpen(false)}
+      >
+        <Panel artwork={artwork} />
+      </Modal.Simple>
+    }
+  </>);
 };
 
