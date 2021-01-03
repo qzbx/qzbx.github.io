@@ -1,3 +1,3 @@
 ほむぺじ
 
-まだ作ってる途中
+https://qzbx.github.io
