@@ -14,7 +14,6 @@
 
 .fadeout {
   @include animation.fadeout();
-  // @include icons.fadeout();
 }
 
 .loader {
