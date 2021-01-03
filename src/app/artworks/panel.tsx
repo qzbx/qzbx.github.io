@@ -8,11 +8,19 @@ import c from "./panel.scss";
 
 export const Panel: React.FC<{artwork: Artwork}> = (props) => {
 
-  const aw = props.artwork;
-  const src = CONST.ARTWORKS_REPO + CONST.ORIGINAL_DIR + aw.file;
+  const aw = props.artwork; // alias
+  const src = CONST.ARTWORKS_REPO + CONST.ORIGINAL_DIR + aw.file; // 画像ソース
+
+  // ロード中の画面
+  const loading = (
+    <div className={c.loading}>
+      <div className={c.loader} />
+      <p>Loading...</p>
+    </div>
+  );
 
   const [windowWidth, windowHeight] = useWindowSize(); // 画面サイズを取得（state）
-  const [panel, setPanel] = useState(<p>わはー</p>); // モーダルのコンテナ
+  const [panel, setPanel] = useState(<>{loading}</>); // モーダルのコンテナ
   const renderPanel = async () => { // 画像を読み込んで描画をセット
 
     const img = await loadImage(src); // 画像を読み込み
@@ -34,8 +42,12 @@ export const Panel: React.FC<{artwork: Artwork}> = (props) => {
       <div 
         className={c.container} 
         style={{width: panelWidth, height: panelHeight,}}
+        onClick={e => {e.stopPropagation();}}
       >
         <img alt={aw.title} src={src} />
+        <div className={c.desc}>
+          <p>{aw.title}</p>
+        </div>
       </div>
     );
   };

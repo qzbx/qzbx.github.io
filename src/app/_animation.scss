@@ -22,4 +22,29 @@
   }
 }
 
+// スライドイン（下から）
+@mixin slideInFromBelow($duration: 1.0s) {
+  animation-name: slideInFromBelow;
+  animation-duration: $duration;
+  animation-fill-mode: both; // アニメ開始・終了状態を前後にも適用
+
+  // 下から上に出現する
+  @keyframes slideInFromBelow {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+}
+
+// スライドアウト（下に）
+@mixin slideOutToBelow($duration: 1.0s) {
+  animation-name: slideOutToBelow;
+  animation-duration: $duration;
+  animation-fill-mode: both; // アニメ開始・終了状態を前後にも適用
+
+  // 下に隠れる
+  @keyframes slideOutToBelow {
+    from { transform: translateY(0); }
+    to { transform: translateY(100%); }
+  }
+}
 
