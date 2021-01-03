@@ -24,7 +24,8 @@ export const Panel: React.FC<{artwork: Artwork}> = (props) => {
   const renderPanel = async () => { // 画像を読み込んで描画をセット
 
     const img = await loadImage(src); // 画像を読み込み
-    const padding = 100; // モーダルと表示領域との隙間（上下 or 左右 -> 値は２倍）
+    // モーダルと表示領域との隙間（上下 or 左右 -> 値は２倍）
+    const padding = windowWidth > CONST.BPW ? 100 : 20; // PC 100, スマホ 20
     const width = windowWidth - padding; // 隙間を適用
     const height = windowHeight - padding;
 

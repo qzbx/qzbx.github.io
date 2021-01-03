@@ -16,11 +16,10 @@ interface Column { // 各行
 
 export const Garalley: React.FC<{imageList: HTMLImageElement[]}> = (props) => {
 
-  const breakpoint = 480; // スマホ用にする幅のブレイクポイント（px）
   const width = useWindowWidth(); // 画面の幅を取得（state）
   const article_margin = 10; // ギャラリー外側のマージンの最小値（px）
   // 各アイテムの幅（px）スマホのときは幅の半分
-  const entry_width = (width > breakpoint) ? 230 : width / 2 - article_margin; 
+  const entry_width = (width > CONST.BPW) ? 230 : width / 2 - article_margin; 
   const max_column_num = 7; // 最大カラム数
   let columnList: Column[] = []; // i番目にi行目のカラムが入る
 

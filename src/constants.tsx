@@ -29,3 +29,4 @@ export const accounts = {
   twitter: "https://twitter.com/bqrtz",
 };
 
+export const BPW = 480; // スマホ用にする幅のブレイクポイント（px）

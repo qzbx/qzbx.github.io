@@ -25,7 +25,7 @@
     background: pl.$header_bg;
     opacity: 0.9;
     display: grid;
-    grid-template-columns: 2fr 1fr; // 横
+    grid-template-columns: auto auto; // 横
     grid-template-rows: auto auto; // 縦
     grid-template-areas:
       "title  date"
