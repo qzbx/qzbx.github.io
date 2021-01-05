@@ -79,6 +79,21 @@ export const Garalley: React.FC<{imageList: HTMLImageElement[]}> = (props) => {
       open && history.push(CONST.LOCATION_URL_ARTWORKS);
     };
   }, [open]);
+  // モーダル表示時の挙動
+  const mainView = document.getElementById("main"); // メインのエレメント
+  const handleClick = (aw: ASSETS.Artwork) => { // モーダル開くとき
+    sessionStorage.setItem("y", String(mainView!.scrollTop)); // スクロール量を保存
+    setOpen(true); 
+    setArtwork(aw);
+  };
+  useEffect(() => { // モーダルから戻るでリダイレクト -> 元の場所までスクロール
+    const y = sessionStorage.getItem("y");
+    if (y) { 
+      mainView!.scroll(0, Number(y));
+      sessionStorage.removeItem("y");
+    };
+  }, []);
+
 
   // イラスト一覧（JSXタグ化）
   const garalley = columnList.map((col, i) => { // (element, index)
@@ -88,7 +103,7 @@ export const Garalley: React.FC<{imageList: HTMLImageElement[]}> = (props) => {
         <div 
           key={j} 
           className={style.entry}
-          onClick={() => {setOpen(true); setArtwork(aw);}}
+          onClick={() => handleClick(aw)}
         >
           <img alt={aw.title} src={src} />
         </div>
@@ -101,6 +116,7 @@ export const Garalley: React.FC<{imageList: HTMLImageElement[]}> = (props) => {
     );
   });
 
+
   // 描画
   return (<>
     <div className={style.wrapper}>
@@ -109,7 +125,7 @@ export const Garalley: React.FC<{imageList: HTMLImageElement[]}> = (props) => {
     {open && artwork &&
       <Modal.Simple
         className={style.mask}
-        onClick={() => setOpen(false)}
+        onClick={() => {setOpen(false); sessionStorage.removeItem("y")}}
       >
         <Panel artwork={artwork} />
       </Modal.Simple>

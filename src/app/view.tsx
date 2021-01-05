@@ -54,7 +54,7 @@ export const App: React.FC<{}> = () => {
         <Navigation />
       </header>
 
-      <div className={style.wrapper}>
+      <div className={style.wrapper} id="main">
         <main>
           <Switch>
             <Route exact path={CONST.LOCATION_URL_HOME}><Home /></Route>
