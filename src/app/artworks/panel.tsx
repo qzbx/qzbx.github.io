@@ -72,8 +72,10 @@ export const Panel: React.FC<{artwork: Artwork}> = (props) => {
     const isMobile = windowWidth <= CONST.BPW; // BPW 以下の幅ならスマホ扱い
     // モーダルと表示領域との隙間（上下 or 左右 -> 値は２倍）
     const padding = isMobile ? 20 : 100; // スマホ 20 PC 100 
-    const width = windowWidth - padding; // 隙間を適用
-    const height = windowHeight - padding;
+    // 隙間・アドレスバー除外を適用
+    // （innerWidth/innerHeight でスクロールバー・アドレスバーを除いたサイズを取得）
+    const width = (!isMobile ? windowWidth : window.innerWidth) - padding; 
+    const height = (!isMobile ? windowHeight : window.innerHeight) - padding;
 
     // 比率に合わせて計算した幅・高さ
     const resizedWidth = img.width * (height / img.height); // height 時の画像の幅
