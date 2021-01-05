@@ -1,5 +1,6 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { useWindowWidth } from "@react-hook/window-size";
 import { Modal } from "garakuta";
 import { Panel } from "./panel";
@@ -69,6 +70,15 @@ export const Garalley: React.FC<{imageList: HTMLImageElement[]}> = (props) => {
   // モーダル（パネル）関連
   const [open, setOpen] = useState(false); // true で絵の拡大表示モーダルを表示
   const [artwork, setArtwork] = useState<ASSETS.Artwork | null>(); // 表示する絵
+  // モーダル表示中の戻るアクションでは /artwork を表示する
+  const history = useHistory();
+  useEffect(() => {
+    window.onpopstate = () => { // 履歴項目変更時に発火する動作をセット
+      // モーダル表示中なら /artwork へリダイレクト
+      // リダイレクト後に /artwork のレンダリングで open は false に初期化される
+      open && history.push(CONST.LOCATION_URL_ARTWORKS);
+    };
+  }, [open]);
 
   // イラスト一覧（JSXタグ化）
   const garalley = columnList.map((col, i) => { // (element, index)
