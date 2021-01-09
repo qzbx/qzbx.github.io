@@ -2,6 +2,7 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import { useWindowSize } from "@react-hook/window-size";
 import * as CONST from "./../../constants";
+import { dateToStr } from "./../../utils";
 import { Artwork } from "./../../assets";
 import { loadImage } from "./view";
 import c from "./panel.scss";
@@ -10,16 +11,11 @@ import c from "./panel.scss";
 const Desc: React.FC<{aw: Artwork; isMobile: Boolean; open: Boolean;}> = (props) => { 
 
   const aw = props.aw; // alias
-  const zp: (num: Number) => String = (num) => { // 2桁のゼロパディング
-    return ("00" + String(num)).slice(-2);
-  };
 
   // 表示領域のコンテンツ
   const content = (<>
     <h1>{aw.title}</h1>
-    <p className={c.date}>
-      {String(aw.date.y)}/{zp(aw.date.m)}/{zp(aw.date.d)}
-    </p>
+    <p className={c.date}>{dateToStr(aw.date)}</p>
     {aw.origin &&
       <p className={c.origin}><span>from</span> {aw.origin}</p>
     }

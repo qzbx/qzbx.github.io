@@ -1,14 +1,16 @@
 export const ICON_SRC = "https://s3-ap-northeast-1.amazonaws.com/waha.work/accounts/avatars/000/000/002/original/3b7b88f7c4ec18cc.png"
 
+export interface Date { // 投稿日
+    y: number;
+    m: number;
+    d: number;
+};
+
 export interface Artwork { // 各画像アイテム
   title: string; // タイトル
   file: string; // ファイル名
   origin: string; // 版権
-  date: { // 投稿日
-    y: number;
-    m: number;
-    d: number;
-  };
+  date: Date;
 }
 
 // アイテム情報リスト
