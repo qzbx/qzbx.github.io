@@ -6,14 +6,12 @@ $breakpoint: 480px; // スマホ用にする幅のブレイクポイント
 
 .container {
   position: relative;
-  background: red;
   @include animation.fadein($duration: 0.7s);
   overflow: hidden; // absolute で浮かせてる .desc の領域外部分を非表示
 
   & > img {
     width: 100%;
     height: 100%;
-
   }
 
   .trigger { // PC 表示の img に適用させる用

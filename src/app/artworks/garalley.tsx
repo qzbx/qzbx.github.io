@@ -5,10 +5,11 @@ import { useWindowWidth } from "@react-hook/window-size";
 import { Modal } from "garakuta";
 import { Panel } from "./panel";
 import * as CONST from "./../../constants";
+import { dateToStr } from "./../../utils";
 import * as ASSETS from "./../../assets";
 
 // SCSS module import
-import style from "./garalley.scss";
+import c from "./garalley.scss";
 
 interface Column { // 各行
   artworks: ASSETS.Artwork[]; // アイテムリスト
@@ -102,15 +103,16 @@ export const Garalley: React.FC<{imageList: HTMLImageElement[]}> = (props) => {
       return (
         <div 
           key={j} 
-          className={style.entry}
+          className={c.entry}
           onClick={() => handleClick(aw)}
         >
           <img alt={aw.title} src={src} />
+          <div className={c.info}><p>{dateToStr(aw.date)}</p></div>
         </div>
       );
     });
     return (
-      <div key={i} className={style.column}>
+      <div key={i} className={c.column}>
         {column}
       </div>
     );
@@ -119,12 +121,12 @@ export const Garalley: React.FC<{imageList: HTMLImageElement[]}> = (props) => {
 
   // 描画
   return (<>
-    <div className={style.wrapper}>
+    <div className={c.wrapper}>
       {garalley}
     </div>
     {open && artwork &&
       <Modal.Simple
-        className={style.mask}
+        className={c.mask}
         onClick={() => {setOpen(false); sessionStorage.removeItem("y")}}
       >
         <Panel artwork={artwork} />

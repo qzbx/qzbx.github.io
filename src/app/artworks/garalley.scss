@@ -1,4 +1,4 @@
-@use "./../palette";
+@use "./../palette" as pl;
 @use "./../animation";
 
 // 変数
@@ -16,17 +16,44 @@ $entry_width_sm: calc(100vw / 2 - 20px); // 各アイテムの幅（スマホ用
   page-break-inside: avoid; // アイテム内改行防止
   break-inside: avoid;      // これも
   width: $entry_width;
-  padding: 5px;
+  margin: 8px 4px; // 縦は横の倍にしなきゃなんだけど何故？？？？？
   cursor: pointer;
   box-sizing: border-box;
-  @media screen and (max-width: #{$breakpoint}) {
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  @media screen and (max-width: #{$breakpoint}) { // スマホ時
     width: $entry_width_sm;
   }
   @include animation.fadein();
 
-  img {
+  & > img {
     width: 100%;
-    border-radius: 9px;
+    &:hover + .info { // img にホバー時の .info の挙動
+      @media screen and (min-width: #{$breakpoint}) { // PC時のみ
+        visibility: visible;
+      }
+    }
+  }
+
+  & > .info { // PC時のみホバーで出す日付情報
+    position: absolute;
+    left: 0; right: 0; bottom: 1px; // 下に濃い線が出る（？）
+    height: 2.8rem;
+    visibility: hidden;
+    background: linear-gradient(rgba(black, 0), black); // 背景グラデ
+    opacity: 0.8;
+    & > p {
+      text-align: right;
+      font-size: 0.75rem;
+      padding: 1.3rem 1.0rem;
+    }
+
+    &:hover {
+      @media screen and (min-width: #{$breakpoint}) { // PC時のみ
+        visibility: visible;
+      }
+    }
   }
 }
 
